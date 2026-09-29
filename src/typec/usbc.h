@@ -39,7 +39,7 @@ extern "C" {
 //--------------------------------------------------------------------+
 
 #ifndef CFG_TUC_TASK_QUEUE_SZ
-#define CFG_TUC_TASK_QUEUE_SZ   8
+#define CFG_TUC_TASK_QUEUE_SZ 8
 #endif
 
 //--------------------------------------------------------------------+
@@ -60,14 +60,14 @@ bool tuc_connect(uint8_t rhport);
 // Return false if port is not initialized
 bool tuc_disconnect(uint8_t rhport);
 
-// Task function should be called in main/rtos loop, extended version of tud_task()
+// Task function should be called in main/rtos loop, extended version of
+// tud_task()
 // - timeout_ms: millisecond to wait, zero = no wait, 0xFFFFFFFF = wait forever
 // - in_isr: if function is called in ISR
 void tuc_task_ext(uint32_t timeout_ms, bool in_isr);
 
 // Task function should be called in main/rtos loop
-TU_ATTR_ALWAYS_INLINE static inline
-void tuc_task (void) {
+TU_ATTR_ALWAYS_INLINE static inline void tuc_task(void) {
   tuc_task_ext(UINT32_MAX, false);
 }
 
@@ -82,15 +82,15 @@ extern void tcd_int_handler(uint8_t rhport);
 // Callbacks
 //--------------------------------------------------------------------+
 
-bool tuc_pd_data_received_cb(uint8_t rhport, pd_header_t const* header, uint8_t const* dobj, uint8_t const* p_end);
-bool tuc_pd_control_received_cb(uint8_t rhport, pd_header_t const* header);
+bool tuc_pd_data_received_cb(uint8_t rhport, pd_header_t const *header,
+                             uint8_t const *dobj, uint8_t const *p_end);
+bool tuc_pd_control_received_cb(uint8_t rhport, pd_header_t const *header);
 
 //--------------------------------------------------------------------+
 //
 //--------------------------------------------------------------------+
 
-bool tuc_msg_request(uint8_t rhport, void const* rdo);
-
+bool tuc_msg_request(uint8_t rhport, void const *rdo);
 
 #ifdef __cplusplus
 }
